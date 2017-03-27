@@ -1,0 +1,52 @@
+{% extends "savethedate/base_generic.html" %}
+
+{% block content %}
+
+
+
+<div class="w3-center w3-margin-right w3-margin-left w3-handlee">
+<h1 class="w3-handlee w3-jumbo">Conferma la tua presenza</h1>
+<br>
+{% if not confermato %}
+<form method="post">
+{% csrf_token %}
+{{ formset.management_form }}
+    <table align="center" class="w3-table-all" style="width:400px;">
+
+        <tr>
+			<th>Nome</th>
+			{% if user.profile.full_day %}
+			<th class="w3-center">Conferma pranzo</th>
+			{% endif %}
+			<th class="w3-center">Conferma sera (dalle 19:00)</th>
+			
+		</tr>
+		{% for form in formset %}
+		
+		<tr>
+            <td>{{ form.instance.user.first_name }}</td>
+            {% if user.profile.full_day %}
+			<td class="w3-center">{{ form.conferma_pranzo }}</td>
+			{% endif %}
+            <td class="w3-center">{{ form.conferma_sera }}</td>
+			
+			{{form.id}}
+        </tr>
+        {% endfor %}
+    </table>
+	<br>
+<input type="submit" value="Invia conferma">
+{% else %}
+<form method="post">
+{% csrf_token %}
+<h3 class="w3-handlee">Grazie per avere confermato!</h3>
+<div style="visibility: hidden; display:none;"> {{ formset }}</div>
+<h3 class="w3-handlee">Se vuoi modificare la tua conferma clicca <input type="submit" value="qui"></h3>
+{% endif %}
+<br>
+<br>
+<p class="w3-large">Per segnalarci eventuali intolleranze/allergie: <a href="mailto:info@miriamgianluca.com?Subject=Intolleranze" target="_top">info@miriamgianluca.it</a></p>
+</div>
+
+
+{% endblock %}

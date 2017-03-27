@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% load static %}
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Calligraffitti|Fredericka+the+Great|Playball|Rouge+Script" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/static/savethedate/jquery.fullPage.css" />
+<link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/savethedate/jquery.fullPage.js"></script>
+
+
+<style>
+.w3-kaushan {
+	font-family: 'Kaushan Script', cursive;
+}
+.w3-handlee {
+	font-family: 'Handlee', cursive;
+}	
+.w3-rouge {
+	font-family: 'Rouge Script', cursive;
+}
+.w3-playball {
+	font-family: 'Playball', cursive;
+}
+.w3-fredericka {
+	font-family: 'Fredericka the Great', cursive;
+}
+.navbar {
+	position:fixed;
+	width:100%;
+	top:0px;
+}
+.alpha60 {
+    /* Fallback for web browsers that doesn't support RGBa */
+    background: rgb(242, 255, 40) transparent;
+    /* RGBa with 0.6 opacity */
+    background: rgba(242, 255, 40, 0.7);
+    /* For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    /* For IE 8*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+}
+.verde-custom {
+	background-color: rgb(157, 255, 32);
+}
+
+
+</style>
+{% block title %}
+<!-- <link rel="stylesheet" href="/lib/w3.css"> -->
+<title>Miriam&Gianluca</title>
+</head>
+<body>
+{% endblock %}
+
+{% block nav %}
+<div class="navbar">
+<div class="w3-bar w3-handlee verde-custom">
+  <a href="{% url 'index' %}" class="w3-bar-item w3-button w3-hide-small">Home</a>
+  <a href="{% url 'chiesa' %}" class="w3-bar-item w3-button w3-hide-small">Come arrivare in chiesa</a>
+  <a href="{% url 'villa' %}" class="w3-bar-item w3-button w3-hide-small">Come arrivare in villa</a>
+  <a href="{% url 'regalo' %}" class="w3-bar-item w3-button w3-hide-small">Per fare un regalo</a>
+  <a href="{% url 'conferma' %}" class="w3-bar-item w3-button w3-hide-small">Conferma la tua presenza</a>
+  <button href="javascript:void(0)" class="w3-button w3-opennav w3-white w3-small w3-round-large w3-left w3-hide-large w3-hide-medium" style="margin:5px" onclick="menu_button()">Menu</button>
+  <a href="{% url 'logout' %}" class="w3-display-topright w3-bar-item w3-button" style="padding-right:10px">Esci</a>
+ <!-- <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>-->
+</div>
+
+<div id="demo" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-handlee alpha60">
+  <a href="{% url 'index' %}" class="w3-bar-item w3-button">Home</a>
+  <a href="{% url 'chiesa' %}" class="w3-bar-item w3-button">Come arrivare in chiesa</a>
+  <a href="{% url 'villa' %}" class="w3-bar-item w3-button">Come arrivare in villa</a>
+  <a href="{% url 'regalo' %}" class="w3-bar-item w3-button">Per fare un regalo</a>
+  <a href="{% url 'conferma' %}" class="w3-bar-item w3-button">Conferma la tua presenza</a>
+</div>
+</div>
+<!--<nav class="w3-sidenav w3-collapse w3-light-grey w3-card-2 w3-animate-left" style="width:200px;" id="mySidenav">
+  <a href="javascript:void(0)" onclick="w3_close()" 
+  class="w3-closenav w3-large w3-hide-large"><i class="fa fa-arrow-left w3-xxlarge"></i></a>
+  <a class="w3-hover-green w3-padding-8" href="{% url 'index' %}">Home</a>
+  <a class="w3-hover-green w3-padding-8" href="{% url 'chiesa' %}">Arrivare in chiesa</a> 
+  <a class="w3-hover-green w3-padding-8" href="{% url 'villa' %}">Arrivare in villa</a> 
+  <a class="w3-hover-green w3-padding-8" href="#">Per fare un regalo</a> 
+</nav>-->
+{% endblock %}
+
+<!--<div class="w3-container w3-green">
+<button class="w3-button w3-opennav w3-white w3-small w3-border w3-border-green w3-round-large" onclick="w3_open()">Menu</button>
+</div>-->
+
+<div id="content" class="w3-main" style="margin-top:50px" onclick="close_menu()">
+{% block content %}
+
+
+{% endblock %}
+</div>
+<!--
+<script>
+function w3_open() {
+  document.getElementById("mySidenav").style.display = "block";
+}
+function w3_close() {
+  document.getElementById("mySidenav").style.display = "none";
+}
+</script>-->
+<script>
+function menu_button() {
+	var x = document.getElementById("demo");
+    if (x.className.indexOf("w3-show") == -1) {
+			x.className += " w3-show";
+			$( "#content" ).css('margin-top','+=200px');
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+		$( "#content" ).css('margin-top','-=200px');
+    }
+}
+
+function close_menu(){
+	var x = document.getElementById("demo");
+	var c = document.getElementById("content");
+	var style = c.currentStyle || window.getComputedStyle(c);
+	var mt = style.marginTop;
+	if(mt!="50px"){
+		x.className = x.className.replace(" w3-show", "");
+		$( "#content" ).css('margin-top','-=200px');
+	}		
+}
+</script>
+
+</body>
+</html>

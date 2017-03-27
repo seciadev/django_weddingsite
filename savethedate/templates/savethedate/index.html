@@ -1,0 +1,83 @@
+{% extends "savethedate/base_generic.html" %}
+
+{% block content %}
+
+
+
+
+
+<!--<header class="w3-container w3-green">
+  <h1 class="w3-kaushan">Miriam & Gianluca</h1> 
+  <p class="w3-kaushan">24 Giugno 2017</p> 
+</header>-->
+
+<!-- <article class="w3-container">
+ {% if user.is_authenticated %}
+ <ul>
+     <li>User: {{ user.get_username }}</li>
+     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>  
+{% endif %} 
+</ul>
+</article> -->
+	
+    <div class="section w3-center w3-margin-right w3-margin-left">
+	<img src="/static/savethedate/asset.png" alt="Miriam e Gianluca" class="w3-image w3-margin w3-round w3-hide-small" style="max-width:50%"/>
+	<img src="/static/savethedate/asset.png" alt="Miriam e Gianluca" class="w3-image w3-margin w3-round w3-hide-medium w3-hide-large" style="max-width:95%"/>
+	<br>
+	<img src="/static/savethedate/glicine.png" alt="======" class="w3-image w3-margin" style=";max-width:120px; "/>
+	</div>
+	
+	
+    <div class="section w3-center w3-margin">
+	<br>
+	<h2 class="w3-handlee ">Festeggeremo poi presso</h2>
+	<h1 class="w3-handlee ">Villa Giacomini</h1>
+	<h2 class="w3-handlee">a Cessalto (TV)</h2>
+	{% if not user.profile.full_day %}
+	<h2 class="w3-handlee">Puoi unirti a noi dalle ore 18:30</h2>
+	{% endif %}
+	<br>
+	<img src="/static/savethedate/fiori.png" alt="======" class="w3-image w3-margin" style=";max-width:100px"/>
+	</div>
+    <div class="section">
+	
+	<div class="section w3-center w3-margin">
+
+	<br>
+	<h2 class="w3-handlee">Puoi confermare la tua presenza</h2>
+	<h2 class="w3-handlee">cliccando <a href="{% url 'conferma' %}">qui</a>.</h2>
+	<br>
+	
+
+	</div>
+
+
+<!--<article class="w3-container">
+	<h2 class="w3-handlee">Cerimonia</h2>
+	<p>La cerimonia si terra' presso la Chiesa di San Pio X, Marghera alle ore 10:30.</p>
+	<hr>
+</article>
+
+<article class="w3-container">
+	<h2 class="w3-kaushan">Ricevimento</h2>
+	<p>Saremo lieti di proseguire i festeggiamenti presso Villa Giacomini, Cessalto.</p>
+</article>
+
+
+<img src="/static/savethedate/corona.jpg" class="w3-round" alt="Gianluca&Miriam" class="w3-image"/>
+
+<footer class="w3-container w3-green">
+  <p class="w3-kaushan">E' gradita gentile conferma!</p>
+</footer>
+-->
+</div>
+
+
+
+<!--<script>
+$(document).ready(function() {
+    $('#fullpage').fullpage();
+});
+</script>-->
+
+{% endblock %}

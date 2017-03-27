@@ -1,0 +1,43 @@
+{% extends "registration/base_generic.html" %}
+
+{% block content %}
+<div class="w3-center w3-margin-right w3-margin-left w3-handlee">
+<h1 class="w3-handlee w3-jumbo">Benvenuto!</h1>
+{% if form.errors %}
+<p>Il tuo username o la tua password non sono corretti. Prova di nuovo.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Non sei abilitato per visualizzare questa pagina. Per favore cambia utente.</p>
+    {% else %}
+    <p>Per vedere questa pagina devi prima accedere.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+
+<div>
+<table align="center">
+<tr>
+  <td>Nome utente:</td>
+  <td>{{ form.username }}</td>
+</tr>
+<tr>
+  <td>{{ form.password.label_tag }}</td>
+  <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<div>
+  <input type="submit" value="Accedi" />
+  <input type="hidden" name="next" value="" />
+</div>
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}">Password dimenticata?</a></p>
+</div>
+
+{% endblock %}
