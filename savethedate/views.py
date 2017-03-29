@@ -32,7 +32,7 @@ def regalo(request):
 			from_email = form.cleaned_data['la_tua_email']
 			message = form.cleaned_data['messaggio']
 			try:
-				send_mail(subject, message, from_email, ['admin@example.com'])
+				send_mail(subject, message, from_email, ['info@miriamgianluca.it'])
 			except BadHeaderError:
 				return HttpResponse('Qualcosa è andato storto')
 			return redirect('grazie')
