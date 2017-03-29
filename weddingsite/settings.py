@@ -108,7 +108,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'authsmtp.register.it'
+EMAIL_HOST_USER = 'info@miriamgianluca.it'
+EMAIL_HOST_PASSWORD = 'Giangi89!'
+EMAIL_PORT = 465
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
