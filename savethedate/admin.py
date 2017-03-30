@@ -13,8 +13,12 @@ class ProfileInline(admin.StackedInline):
 
 # Define a new User admin
 class UserAdmin(BaseUserAdmin):
-    inlines = (ProfileInline, )
+	inlines = (ProfileInline, )
+	
+#class ProfileAdmin:
+#	list_display = ('user')
 
 # Re-register UserAdmin
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
+#admin.site.register(ProfileAdmin)
