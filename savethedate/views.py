@@ -36,7 +36,7 @@ def regalo(request):
 			subject = 'Auguri da ' + mUser
 			from_email = Email(form.cleaned_data['la_tua_email'])
 			to_email = Email('info@miriamgianluca.it')
-			content = Content(form.cleaned_data['messaggio'])
+			content = Content("text/plain", form.cleaned_data['messaggio'])
 			mail = Mail(from_email, subject, to_email, content)
 			try:
 				response = sg.client.mail.send.post(request_body=mail.get())
