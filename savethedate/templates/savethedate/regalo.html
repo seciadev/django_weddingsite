@@ -24,20 +24,25 @@
 	
 	<form method="post">
     {% csrf_token %}
-	<table align="center" class="w3-table-all" style="width:50%">
-    <tr>
-			<th>La tua email:</th>
-			<td>{{ form.la_tua_email }}</td>
-	</tr>
-	<tr>
-			<th>Messaggio:</th>
-			<td>{{ form.messaggio }}</td>
-	</tr>
-	</table>
+	<div class="w3-content" style="width:100%;max-width:500px">
+    <div class="w3-content">
+			<div class="w3-quarter">La tua email:</div>
+			<div class="w3-threequarter">{{ form.la_tua_email }}</div>
+	</div>
 	<br>
-    <div class="form-actions">
-      <button type="submit">Invia</button>
+	<br>
+	<div class="w3-content">
+			<div class="w3-quarter">Messaggio:</div>
+			<div class="w3-threequarter">{{ form.messaggio }}</div>
+	</div>
+	<br>
+	<br>
+	<div class="form-actions">
+	  <button type="submit">Invia</button>
     </div>
+	</div>
+	<br>
+ 
 </form>
 </div>
 <br>

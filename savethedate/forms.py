@@ -27,4 +27,5 @@ class ContactForm(forms.Form):
 	
 	def __init__(self, *args, **kwargs):
 		super(ContactForm, self).__init__(*args, **kwargs)
-		self.fields['la_tua_email'].widget.attrs['style'] = 'width: 245px'
+		self.fields['la_tua_email'].widget.attrs['style'] = 'width:100%; max-width:400px'
+		self.fields['messaggio'].widget.attrs['style'] = 'width:100%; max-width:400px'
