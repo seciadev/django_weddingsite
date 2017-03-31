@@ -65,7 +65,6 @@ def conferma(request):
 					f = form.save(commit=False)
 					f.conferma_inviata = True
 					f.save()
-				return redirect('conferma')
 				
 				sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 				mUser = request.user.first_name + " " + request.user.last_name
@@ -79,6 +78,8 @@ def conferma(request):
 					response = sg.client.mail.send.post(request_body=mail.get())
 				except BadHeaderError:
 					return HttpResponse('Qualcosa è andato storto')
+					
+				return redirect('conferma')
 				
 			else:
 				return HttpResponse(formset.errors, request.POST)
