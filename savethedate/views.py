@@ -68,7 +68,7 @@ def conferma(request):
 				return redirect('conferma')
 				
 				sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
-				mUser = request.user.first_name + request.user.last_name
+				mUser = request.user.first_name + " " + request.user.last_name
 				subject = 'Conferma da ' + mUser
 				from_email = Email('info@miriamgianluca.it')
 				to_email = Email('info@miriamgianluca.it')
