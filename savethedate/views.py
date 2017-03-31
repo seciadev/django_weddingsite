@@ -7,6 +7,10 @@ from .models import Profile
 from django.contrib.auth.models import User
 from django.forms import modelformset_factory
 from django.core.mail import send_mail, BadHeaderError
+import sendgrid
+import os
+from sendgrid.helpers.mail import *
+
 
 @login_required
 def welcome(request):
@@ -27,12 +31,16 @@ def regalo(request):
 	else:
 		form = ContactForm(request.POST)
 		if form.is_valid():
+			sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
 			mUser = request.user.username
 			subject = 'Auguri da ' + mUser
-			from_email = form.cleaned_data['la_tua_email']
-			message = form.cleaned_data['messaggio']
+			from_email = Email(form.cleaned_data['la_tua_email'])
+			to_email = Email('info@miriamgianluca.it')
+			content = Content(form.cleaned_data['messaggio'])
+			mail = Mail(from_email, subject, to_email, content)
 			try:
-				send_mail(subject, message, from_email, ['info@miriamgianluca.it'])
+				response = sg.client.mail.send.post(request_body=mail.get())
+				#send_mail(subject, message, from_email, ['info@miriamgianluca.it'])
 			except BadHeaderError:
 				return HttpResponse('Qualcosa è andato storto')
 			return redirect('grazie')
