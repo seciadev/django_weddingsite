@@ -66,6 +66,20 @@ def conferma(request):
 					f.conferma_inviata = True
 					f.save()
 				return redirect('conferma')
+				
+				sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+				mUser = request.user.first_name + request.user.last_name
+				subject = 'Conferma da ' + mUser
+				from_email = Email('info@miriamgianluca.it')
+				to_email = Email('info@miriamgianluca.it')
+				message = "Hai ricevuto una conferma da "  + mUser
+				content = Content("text/plain", message)
+				mail = Mail(from_email, subject, to_email, content)
+				try:
+					response = sg.client.mail.send.post(request_body=mail.get())
+				except BadHeaderError:
+					return HttpResponse('Qualcosa è andato storto')
+				
 			else:
 				return HttpResponse(formset.errors, request.POST)
 		else:
@@ -82,19 +96,6 @@ def conferma(request):
 					f = form.save(commit=False)
 					f.conferma_inviata = False
 					f.save()
-					
-				sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
-				mUser = request.user.first_name + request.user.last_name
-				subject = 'Conferma da ' + mUser
-				from_email = Email('info@miriamgianluca.it')
-				to_email = Email('info@miriamgianluca.it')
-				message = "Hai ricevuto una conferma da "  + mUser
-				content = Content("text/plain", message)
-				mail = Mail(from_email, subject, to_email, content)
-				try:
-					response = sg.client.mail.send.post(request_body=mail.get())
-				except BadHeaderError:
-					return HttpResponse('Qualcosa è andato storto')
 				
 				return redirect('conferma')
 			else:
