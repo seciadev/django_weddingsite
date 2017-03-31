@@ -84,11 +84,11 @@ def conferma(request):
 					f.save()
 					
 				sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
-				mUser = request.user.first_name + request.user.last_name
-				subject = 'Conferma da ' + mUser
+				#mUser = request.user.first_name + request.user.last_name
+				subject = 'Conferma da '
 				from_email = Email('info@miriamgianluca.it')
 				to_email = Email('info@miriamgianluca.it')
-				message = "Hai ricevuto una conferma da " + mUser
+				message = "Hai ricevuto una conferma da " 
 				content = Content("text/plain", message)
 				mail = Mail(from_email, subject, to_email, content)
 				try:
