@@ -96,7 +96,7 @@ def conferma(request):
 		else:
 			formset = ProfileFormSet(queryset=Profile.objects.filter(family=mFamily))
 			#form = ConfirmForm(instance=request.user.profile)
-		return render(request, 'savethedate/conferma.html', {'confermato': mConfirmed, 'formset':formset})
+		return render(request, 'savethedate/conferma.html', {'confermato': mConfirmed, 'formset':formset, 'mFamily':mFamily})
 	
 	else:
 		EditFormSet = modelformset_factory(Profile, form=SendConfirmForm, extra=0)
