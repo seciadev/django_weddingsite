@@ -5,7 +5,7 @@ from .models import Profile
 class ConfirmForm(forms.ModelForm):
 	class Meta:
 		model = Profile
-		fields = ('user', 'conferma_pranzo', 'conferma_sera','conferma_inviata',)
+		fields = ('user', 'family','conferma_pranzo', 'conferma_sera','conferma_inviata',)
 		
 	def __init__(self, *args, **kwargs):
 		super(ConfirmForm, self).__init__(*args, **kwargs)
