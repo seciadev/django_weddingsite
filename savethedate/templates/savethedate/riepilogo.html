@@ -1,0 +1,45 @@
+{% extends "savethedate/base_generic.html" %}
+
+{% block content %}
+
+
+
+<div class="w3-center w3-margin-right w3-margin-left w3-handlee">
+<h1 class="w3-handlee w3-jumbo">Riepilogo conferme</h1>
+<br>
+
+{% csrf_token %}
+{{ formset.management_form }}
+    <table align="center" class="w3-table-all" style="width:100%; max-width:400px">
+
+        <tr>
+			<th>Nome</th>
+			{% if user.profile.full_day %}
+			<th class="w3-center">Conferma pranzo</th>
+			{% endif %}
+			<th class="w3-center">Conferma sera</th>
+			<th class="w3-center">Conferma inviata</th>
+			
+		</tr>
+		{% for form in formset %}
+		
+		<tr>
+            <td>{{ form.instance.user.first_name }}</td>
+            {% if form.instance.user.profile.full_day %}
+			<td class="w3-center">{{ form.conferma_pranzo }}</td>
+			{% else %}
+			<td class="w3-center"></td>
+			{% endif %}
+            <td class="w3-center">{{ form.conferma_sera }}</td>
+			<td class="w3-center">{{ form.conferma_inviata }}</td>
+			
+			{{form.id}}
+        </tr>
+        {% endfor %}
+    </table>
+	<br>
+
+</div>
+
+
+{% endblock %}

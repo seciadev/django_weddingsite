@@ -27,6 +27,12 @@ def contatti(request):
 @login_required
 def chiesa(request):
 	return render(request, 'savethedate/chiesa.html', {})
+	
+@login_required
+def riepilogo(request):
+	ProfileFormSet = modelformset_factory(Profile, form=ConfirmForm, extra=0)
+	formset = ProfileFormSet(queryset=Profile.objects.filter())
+	return render(request, 'savethedate/riepilogo.html', {'formset':formset})
 
 @login_required
 def regalo(request):

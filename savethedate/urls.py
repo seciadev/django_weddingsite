@@ -9,4 +9,5 @@ urlpatterns = [
 	url(r'^regalo/$', views.regalo, name='regalo'),
 	url(r'^grazie/$', views.grazie, name='grazie'),
 	url(r'^contatti/$', views.contatti, name='contatti'),
+	url(r'^riepilogo/$', views.riepilogo, name='riepilogo'),
 ]
