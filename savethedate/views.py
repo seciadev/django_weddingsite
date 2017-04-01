@@ -19,6 +19,10 @@ def welcome(request):
 @login_required	
 def villa(request):
 	return render(request, 'savethedate/villa.html', {})
+	
+@login_required	
+def contatti(request):
+	return render(request, 'savethedate/contatti.html', {})
 
 @login_required
 def chiesa(request):
