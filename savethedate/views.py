@@ -113,4 +113,4 @@ def conferma(request):
 				return HttpResponse(formset.errors, request.POST)
 		else:
 			formset = EditFormSet(queryset=Profile.objects.filter(family=mFamily))
-		return render(request, 'savethedate/conferma.html', {'confermato': mConfirmed, 'formset':formset})
+		return render(request, 'savethedate/conferma.html', {'confermato': mConfirmed, 'formset':formset, 'mFamily':mFamily})
