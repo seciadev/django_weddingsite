@@ -14,6 +14,7 @@
 
         <tr>
 			<th>Nome</th>
+			<th>Cognome</th>
 			{% if user.profile.full_day %}
 			<th class="w3-center">Conferma pranzo</th>
 			{% endif %}
@@ -25,6 +26,7 @@
 		
 		<tr>
             <td>{{ form.instance.user.first_name }}</td>
+			<td>{{ form.instance.user.last_name }}</td>
             {% if form.instance.user.profile.full_day %}
 			<td class="w3-center">{{ form.conferma_pranzo }}</td>
 			{% else %}
