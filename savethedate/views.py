@@ -32,7 +32,16 @@ def chiesa(request):
 def riepilogo(request):
 	ProfileFormSet = modelformset_factory(Profile, form=ConfirmForm, extra=0)
 	formset = ProfileFormSet(queryset=Profile.objects.filter())
-	return render(request, 'savethedate/riepilogo.html', {'formset':formset})
+	tot = len(formset)
+	confermati_pranzo = 0
+	confermati_sera = 0
+	for form in formset:
+		if(form['conferma_pranzo'].value()):
+			confermati_pranzo +=1
+		if(form['conferma_sera'].value()):
+			confermati_sera +=1
+		
+	return render(request, 'savethedate/riepilogo.html', {'formset':formset, 'tot':tot, 'confermati_pranzo':confermati_pranzo, 'confermati_sera':confermati_sera})
 
 @login_required
 def regalo(request):

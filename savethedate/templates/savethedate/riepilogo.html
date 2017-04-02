@@ -7,6 +7,12 @@
 <div class="w3-center w3-margin-right w3-margin-left w3-handlee">
 <h1 class="w3-handlee w3-jumbo">Riepilogo conferme</h1>
 <br>
+	<div>
+		<p>Totale invitati: {{ tot }}</p>
+		<p>Confermati pranzo: {{ confermati_pranzo }}</p>
+		<p>Confermati sera: {{ confermati_sera }}</p>
+	</div>
+<br>
 
 {% csrf_token %}
 {{ formset.management_form }}
